@@ -38,6 +38,18 @@ class ContactMessage(BaseModel):
 def read_root():
     return {"message": "Hello World! My CV API is running!"}
 
+@app.get("/api/about")
+def get_about_me():
+    return {
+        "bio": "I am a dedicated QA and Test Lead with a passion for ensuring software quality, automating tests, and building robust testing architectures. I bridge the gap between development and flawless user experiences.",
+        "skills": [
+            "Test Automation & Architecture",
+            "SQL & Database Verification",
+            "API Testing (FastAPI, REST)",
+            "Python, HTML, CSS, JavaScript"
+        ]
+    }
+
 @app.get("/api/experience")
 def get_experience():
     return {
