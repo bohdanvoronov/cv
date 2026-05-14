@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My CV Portfolio</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        h1, h2 { color: #2c3e50; }
+        input, textarea { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { background-color: #3498db; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #2980b9; }
+        #status-msg { color: green; font-weight: bold; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="card">
+        <h1>Bohdan Voronov</h1>
+        <p>Experienced QA / Test Lead</p>
+    </div>
+
+    <!-- Experience Section (Data comes from FastAPI!) -->
+    <div class="card">
+        <h2>Current Experience</h2>
+        <div id="experience-data">
+            <p><i>Loading experience from database...</i></p>
+        </div>
+    </div>
+
+    <!-- Contact Form (Sends data to FastAPI!) -->
+    <div class="card">
+        <h2>Contact Me</h2>
+        <form id="contactForm">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <div id="status-msg"></div>
+    </div>
+
+    <!-- The JavaScript that talks to your API -->
+    <script>
+        // 1. Fetch the Experience Data when the page loads
+        window.onload = async function() {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/experience');
+                const data = await response.json();
+                
+                document.getElementById('experience-data').innerHTML = `
+                    <h3>${data.role} at ${data.company}</h3>
+                    <p>${data.status}</p>
+                `;
+            } catch (error) {
+                document.getElementById('experience-data').innerHTML = "<p style='color:red'>Make sure your FastAPI server is running!</p>";
+            }
+        };
+
+        // 2. Handle the Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Stop the page from reloading
+            
+            const payload = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+
+            const response = await fetch('http://127.0.0.1:8000/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+            
+            // Show the success message and clear the form
+            document.getElementById('status-msg').innerText = result.reply;
+            document.getElementById('contactForm').reset();
+        });
+    </script>
+</body>
+</html>
