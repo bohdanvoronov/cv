@@ -119,7 +119,7 @@
         // --- 2. Fetch Experience Data on Load ---
         window.onload = async function() {
             try {
-                const response = await fetch('https://literate-meme-r4wwr5qrgj47hxr7w-8000.app.github.dev/api/experience');
+                const response = await fetch('https://symmetrical-xylophone-wrxx9qp974jgf5444-8000.app.github.dev/api/experience');
                 const data = await response.json();
                 
                 document.getElementById('experience-data').innerHTML = `
@@ -146,7 +146,7 @@
             submitBtn.innerText = "Sending...";
 
             try {
-                const response = await fetch('https://literate-meme-r4wwr5qrgj47hxr7w-8000.app.github.dev/api/contact', {
+                const response = await fetch('https://symmetrical-xylophone-wrxx9qp974jgf5444-8000.app.github.dev/api/contact', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
