@@ -51,6 +51,40 @@
         }
         .btn-dynamic:hover { transform: scale(1.02); }
         #status-msg { color: #27ae60; font-weight: bold; margin-top: 15px; text-align: center; }
+
+        
+        
+        /* titles and badges*/
+        .skills-section h3 { 
+            margin-top: 20px; 
+            margin-bottom: 10px; 
+            font-size: 1.2em; 
+            color: #111; /* Darker, more modern text color */
+        }
+
+
+        .skill-tags { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 10px; 
+        }
+
+
+        .badge { 
+            background-color: #000000; /* Solid Black */
+            color: #ffffff; /* Crisp White Text */
+            padding: 8px 18px; /* Perfect pill proportions */
+            border-radius: 30px; /* Highly rounded edges */
+            font-size: 12px; 
+            font-weight: 800; /* Extra bold text */
+            text-transform: uppercase; /* Forces ALL CAPS just like the reference */
+            letter-spacing: 1px; /* Adds a tiny bit of space between letters for that high-end look */
+        }
+
+
+        .badge.soft { 
+            background-color: #333333; 
+        }
     </style>
 </head>
 <body>
@@ -67,12 +101,31 @@
     </div>
 
     <div id="about" class="tab-content card active">
-        <h2>Hello!</h2>
+        
         <div class="about-container">
             <img src="profile.jpg" alt="Bohdan Voronov" class="profile-pic">
             
             <div id="about-data">
-                <p style="color: #7f8c8d;"><i>Loading profile from database...</i></p>
+                <p>I am a dedicated QA and Test Lead with a passion for ensuring software quality, automating tests, and building robust testing architectures. I bridge the gap between development and flawless user experiences.</p>
+                
+                <div class="skills-section">
+                    <h3>Hard Skills</h3>
+                    <div class="skill-tags">
+                        <span class="badge">Test Automation</span>
+                        <span class="badge">API Testing (REST)</span>
+                        <span class="badge">SQL & DB Verification</span>
+                        <span class="badge">Python</span>
+                        <span class="badge">FastAPI</span>
+                    </div>
+
+                    <h3>Soft Skills</h3>
+                    <div class="skill-tags">
+                        <span class="badge soft">Team Leadership</span>
+                        <span class="badge soft">Mentoring</span>
+                        <span class="badge soft">Agile / Scrum</span>
+                        <span class="badge soft">Problem Solving</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
