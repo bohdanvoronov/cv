@@ -1,92 +1,57 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bohdan Voronov - QA Lead</title>
+    <title>Bohdan Voronov - QA Engineer / Test Lead</title>
     <style>
-        /* Base Styles */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; color: #333; max-width: 900px; margin: 0 auto; padding: 20px; }
         .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); margin-bottom: 20px; }
         h1, h2, h3 { color: #2c3e50; margin-top: 0; }
 
-
-        /* --- Certification Grid Styles --- */
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .cert-card {
-            background: #ffffff;
-            border: 1px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .cert-card:hover {
-            transform: translateY(-8px); /* Lifts the card up smoothly */
-            box-shadow: 0 12px 20px rgba(0,0,0,0.12); /* Deepens the shadow */
-            border-color: #3498db;
-        }
-
-        .cert-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-
-        .cert-title {
-            font-size: 1.1em;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-
-        .cert-link {
-            display: inline-block;
-            margin-top: auto; /* Pushes the button to the bottom */
-            padding: 8px 16px;
-            background-color: #f1f2f6;
-            color: #2c3e50;
-            text-decoration: none;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 14px;
-            transition: 0.2s;
-        }
-
-        .cert-link:hover {
-            background-color: #2c3e50;
-            color: #ffffff;
-        }
-        /* profile photo */
-        .about-container { display: flex; align-items: center; gap: 30px;}
+        .about-container { display: flex; align-items: flex-start; gap: 30px; flex-wrap: wrap;}
         .profile-pic { width: 180px; height: 180px; min-width: 180px; object-fit: cover; border-radius: 50%; border: 3px solid #2c3e50; box-shadow: 0 6px 12px rgba(0,0,0,0.15);}
 
-        /* Navigation Tabs */
-        .tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #ddd; padding-bottom: 10px; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #ddd; padding-bottom: 10px; flex-wrap: wrap; }
         .tab-btn { background: none; border: none; font-size: 18px; color: #7f8c8d; cursor: pointer; padding: 10px 20px; border-radius: 8px 8px 0 0; transition: 0.3s; }
         .tab-btn:hover { color: #2c3e50; background-color: #ecf0f1; }
         .tab-btn.active { color: #fff; background-color: #2c3e50; font-weight: bold; }
 
-        /* Hide content sections by default */
         .tab-content { display: none; animation: fadeIn 0.5s; }
         .tab-content.active { display: block; }
         
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Form Styles */
+        .skills-section h3 { margin-top: 20px; margin-bottom: 8px; font-size: 1.1em; color: #2c3e50; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+        .badge { 
+            background-color: #111; 
+            color: #fff; 
+            padding: 6px 14px; 
+            border-radius: 20px; 
+            font-size: 11px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+        }
+        .badge.main-lang { background-color: #2b6cb0; }
+        .badge.soft { background-color: #4a5568; }
+        .badge.lang { background-color: #2b6cb0; }
+
+        .exp-item {
+            border-left: 3px solid #3498db;
+            padding-left: 20px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .exp-item h3 { margin-bottom: 2px; font-size: 1.3em; }
+        .exp-company { color: #3498db; font-weight: bold; font-size: 1.05em; margin-bottom: 4px; }
+        .exp-meta { color: #7f8c8d; font-size: 0.9em; margin-bottom: 10px; }
+        .exp-highlights { margin: 0; padding-left: 20px; color: #444; }
+        .exp-highlights li { margin-bottom: 6px; line-height: 1.5; }
+
         input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-family: inherit; }
         
-        /* The Dynamic Gradient Button */
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -109,46 +74,39 @@
         .btn-dynamic:hover { transform: scale(1.02); }
         #status-msg { color: #27ae60; font-weight: bold; margin-top: 15px; text-align: center; }
 
-        
-        
-        /* titles and badges*/
-        .skills-section h3 { 
-            margin-top: 20px; 
-            margin-bottom: 10px; 
-            font-size: 1.2em; 
-            color: #111; /* Darker, more modern text color */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
         }
-
-
-        .skill-tags { 
-            display: flex; 
-            flex-wrap: wrap; 
-            gap: 10px; 
+        .cert-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
         }
-
-
-        .badge { 
-            background-color: #000000; /* Solid Black */
-            color: #ffffff; /* Crisp White Text */
-            padding: 8px 18px; /* Perfect pill proportions */
-            border-radius: 30px; /* Highly rounded edges */
-            font-size: 12px; 
-            font-weight: 800; /* Extra bold text */
-            text-transform: uppercase; /* Forces ALL CAPS just like the reference */
-            letter-spacing: 1px; /* Adds a tiny bit of space between letters for that high-end look */
+        .cert-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 6px 14px;
+            background-color: #f1f2f6;
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 13px;
         }
-
-
-        .badge.soft { 
-            background-color: #333333; 
-        }
+        .cert-link:hover { background-color: #2c3e50; color: #fff; }
     </style>
 </head>
 <body>
 
-    <div style="text-align: center; margin-bottom: 30px;">
+    <div style="text-align: center; margin-bottom: 25px;">
         <h1 style="font-size: 2.5em; margin-bottom: 5px;">Bohdan Voronov</h1>
-        <p style="color: #7f8c8d; font-size: 1.2em;">Experienced QA / Test Lead</p>
+        <p style="color: #7f8c8d; font-size: 1.2em; font-weight: 600;">QA Engineer / Test Lead (6 Years Experience)</p>
     </div>
 
     <div class="tabs">
@@ -159,29 +117,64 @@
     </div>
 
     <div id="about" class="tab-content card active">
-        
         <div class="about-container">
             <img src="profile.JPG" alt="Bohdan Voronov" class="profile-pic">
-            
-            <div id="about-data">
-                <p>I am a dedicated QA and Test Lead with a passion for ensuring software quality, automating tests, and building robust testing architectures. I bridge the gap between development and flawless user experiences.</p>
+            <div style="flex: 1; min-width: 280px;">
+                <p id="bio-text" style="font-size: 1.05em; line-height: 1.6; margin-top: 0;">
+                    QA Engineer / Test Lead with 6 years of commercial experience. Passionate about testing, delivering high-quality products, and collaborating with talented teams to save development costs and enhance user experience.
+                </p>
                 
                 <div class="skills-section">
-                    <h3>Hard Skills</h3>
+                    <h3>Programming & Core</h3>
                     <div class="skill-tags">
-                        <span class="badge">Test Automation</span>
-                        <span class="badge">API Testing (REST)</span>
-                        <span class="badge">SQL & DB Verification</span>
-                        <span class="badge">Python</span>
-                        <span class="badge">FastAPI</span>
+                        <span class="badge main-lang">Python (Main Language)</span>
+                        <span class="badge">JavaScript</span>
+                        <span class="badge">SQL / MySQL</span>
                     </div>
 
-                    <h3>Soft Skills</h3>
+                    <h3>Automation & Performance</h3>
                     <div class="skill-tags">
-                        <span class="badge soft">Team Leadership</span>
-                        <span class="badge soft">Mentoring</span>
+                        <span class="badge">Playwright</span>
+                        <span class="badge">Selenium WebDriver</span>
+                        <span class="badge">WebdriverIO (Mobile Testing)</span>
+                        <span class="badge">Pytest</span>
+                        <span class="badge">Postman & Newman</span>
+                        <span class="badge">JMeter</span>
+                        <span class="badge">Lighthouse CLI</span>
+                    </div>
+
+                    <h3>Web & CMS Technologies</h3>
+                    <div class="skill-tags">
+                        <span class="badge">Adobe Experience Manager (AEM)</span>
+                        <span class="badge">Solr & Algolia Search</span>
+                        <span class="badge">HTML5 / CSS3</span>
+                        <span class="badge">REST APIs</span>
+                    </div>
+
+                    <h3>CI/CD & DevOps Tools</h3>
+                    <div class="skill-tags">
+                        <span class="badge">GitLab</span>
+                        <span class="badge">GitHub Actions</span>
+                        <span class="badge">Docker</span>
+                        <span class="badge">Jenkins</span>
+                        <span class="badge">Linux / WSL Terminals</span>
+                    </div>
+
+                    <h3>Test Management & Leadership</h3>
+                    <div class="skill-tags">
+                        <span class="badge soft">Team Leadership & Mentoring</span>
+                        <span class="badge soft">Jira / Xray / TestRail / QASE</span>
                         <span class="badge soft">Agile / Scrum</span>
-                        <span class="badge soft">Problem Solving</span>
+                        <span class="badge soft">Kanban</span>
+                        <span class="badge soft">Cross-Browser (BrowserStack)</span>
+                    </div>
+
+                    <h3>Languages</h3>
+                    <div class="skill-tags">
+                        <span class="badge lang">English — C1</span>
+                        <span class="badge lang">Czech — B2</span>
+                        <span class="badge lang">Ukrainian — Native</span>
+                        <span class="badge lang">Russian — Fluent</span>
                     </div>
                 </div>
             </div>
@@ -191,7 +184,7 @@
     <div id="experience" class="tab-content card">
         <h2>Professional Experience</h2>
         <div id="experience-data">
-            <p style="color: #7f8c8d;"><i>Loading experience from database...</i></p>
+            <p style="color: #7f8c8d;"><i>Loading comprehensive career history from backend...</i></p>
         </div>
     </div>
     
@@ -300,49 +293,49 @@
             <input type="text" id="name" placeholder="Your Name" required>
             <input type="email" id="email" placeholder="Your Email" required>
             <textarea id="message" rows="5" placeholder="Write your message here..." required></textarea>
-            
             <button type="submit" class="btn-dynamic">Send Message</button>
         </form>
         <div id="status-msg"></div>
     </div>
 
     <script>
-        // --- 1. Tab Switching Logic ---
         function openTab(evt, tabName) {
-            // Hide all tab contents
             let tabContents = document.getElementsByClassName("tab-content");
             for (let i = 0; i < tabContents.length; i++) {
                 tabContents[i].classList.remove("active");
             }
-
-            // Remove 'active' styling from all buttons
             let tabBtns = document.getElementsByClassName("tab-btn");
             for (let i = 0; i < tabBtns.length; i++) {
                 tabBtns[i].classList.remove("active");
             }
-
-            // Show the current tab, and add an "active" class to the button that opened it
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.classList.add("active");
         }
 
-        // --- 2. Fetch Experience Data on Load ---
         window.onload = async function() {
             try {
                 const response = await fetch('https://symmetrical-xylophone-wrxx9qp974jgf5444-8000.app.github.dev/api/experience');
                 const data = await response.json();
                 
-                document.getElementById('experience-data').innerHTML = `
-                    <h3 style="margin-bottom: 5px;">${data.role}</h3>
-                    <p style="color: #3498db; font-weight: bold; margin-top: 0;">${data.company}</p>
-                    <p>${data.status}</p>
-                `;
+                let expHTML = '';
+                data.experiences.forEach(job => {
+                    let highlightsHTML = job.highlights.map(h => `<li>${h}</li>`).join('');
+                    expHTML += `
+                        <div class="exp-item">
+                            <h3>${job.role}</h3>
+                            <div class="exp-company">${job.company}</div>
+                            <div class="exp-meta">${job.period} | ${job.location}</div>
+                            <ul class="exp-highlights">${highlightsHTML}</ul>
+                        </div>
+                    `;
+                });
+                
+                document.getElementById('experience-data').innerHTML = expHTML;
             } catch (error) {
                 document.getElementById('experience-data').innerHTML = "<p style='color:red'>⚠️ Could not connect to the backend server. Make sure FastAPI is running!</p>";
             }
         };
 
-        // --- 3. Handle Form Submission ---
         document.getElementById('contactForm').addEventListener('submit', async function(event) {
             event.preventDefault(); 
             
