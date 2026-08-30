@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import sqlite3
 from fastapi.middleware.cors import CORSMiddleware
@@ -33,7 +34,11 @@ class ContactMessage(BaseModel):
 
 @app.get("/")
 def read_root():
-    return {"message": "Hello World! My CV API is running!"}
+    return FileResponse("index.html")
+
+@app.get("/profile.JPG")
+def get_profile_image():
+    return FileResponse("profile.JPG")
 
 @app.get("/api/about")
 def get_about_me():
