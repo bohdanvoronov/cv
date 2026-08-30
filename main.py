@@ -3,6 +3,9 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import sqlite3
 from fastapi.middleware.cors import CORSMiddleware
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 app = FastAPI()
 
@@ -27,10 +30,44 @@ cursor.execute('''
 ''')
 conn.commit()
 
+
 class ContactMessage(BaseModel):
     name: str
     email: str
     message: str
+
+def send_email_notification(name, sender_email_user, user_message):
+    smtp_server = "smtp.gmail.com"
+    smtp_port = 587
+    
+    # PUT YOUR GMAIL AND 16-CHAR APP PASSWORD HERE:
+    my_gmail = "YOUR_EMAIL@gmail.com"
+    my_app_password = "YOUR_16_CHAR_APP_PASSWORD"
+
+    msg = MIMEMultipart()
+    msg['From'] = my_gmail
+    msg['To'] = my_gmail
+    msg['Subject'] = f"🚀 New Portfolio Message from {name}"
+
+    body = f"""
+    You have received a new message from your portfolio contact form!
+
+    Name: {name}
+    Email: {sender_email_user}
+    
+    Message:
+    {user_message}
+    """
+    msg.attach(MIMEText(body, 'plain'))
+
+    try:
+        server = smtplib.SMTP(smtp_server, smtp_port)
+        server.starttls()
+        server.login(my_gmail, my_app_password)
+        server.sendmail(my_gmail, my_gmail, msg.as_string())
+        server.quit()
+    except Exception as e:
+        print(f"Error sending email: {e}")
 
 @app.get("/")
 def read_root():
@@ -130,11 +167,26 @@ def get_all_messages():
         })
     return {"messages": saved_messages}
 
+# @app.post("/api/contact")
+# def send_message(msg: ContactMessage):
+#     cursor.execute('''
+#         INSERT INTO messages (name, email, message) 
+#         VALUES (?, ?, ?)
+#     ''', (msg.name, msg.email, msg.message))
+#     conn.commit()
+#     return {"status": "success", "reply": f"Thanks {msg.name}, your message was saved to the database!"}
+
+
 @app.post("/api/contact")
 def send_message(msg: ContactMessage):
+    # 1. Save to SQLite Database
     cursor.execute('''
         INSERT INTO messages (name, email, message) 
         VALUES (?, ?, ?)
     ''', (msg.name, msg.email, msg.message))
     conn.commit()
-    return {"status": "success", "reply": f"Thanks {msg.name}, your message was saved to the database!"}
+    
+    # 2. Send email notification to your Gmail
+    send_email_notification(msg.name, msg.email, msg.message)
+
+    return {"status": "success", "reply": f"Thanks {msg.name}, your message was saved to the database and emailed!"}
