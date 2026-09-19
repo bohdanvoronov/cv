@@ -96,11 +96,20 @@ def get_experience():
                 "period": "Aug 2025 - Present",
                 "location": "Prague, Czechia · Hybrid",
                 "highlights": [
-                    "Design and execute complex testing flows across Adobe Experience Manager (AEM) and integrated platforms.",
-                    "Solr & Search Testing: Designed QA strategies for Solr search logic, indexing validation, and multilingual edge cases.",
-                    "Performance Testing: Conducted UI performance testing using Lighthouse CLI (Core Web Vitals) and load/stress testing using JMeter.",
-                    "AEM Testing & Validation: Author and validate components in AEM editor, test Brightcove video integrations and SEO elements.",
-                    "QA Leadership: Sole QA for regression and functional verification, and mentor a team of 3 QA engineers."
+                    "As dedicated QA Lead, design, execute, and validate complex testing flows across Adobe Experience Manager (AEM) and integrated platforms, combining hands-on testing with team mentorship and release risk management.",
+                    "QA Leadership & Process Improvement: Serve as sole QA Lead for end-to-end regression, functional, and metadata validation across frontend and backend applications.",
+                    "Mentor a team of 3 QA engineers (1 Senior, 2 Juniors) on testing strategies, execution tools, and standardized bug reporting.",
+                    "Partner with Product Owners, Developers, and Content Authors to clarify edge-case requirements and document reusable QA checklists and test plans.",
+                    "AEM & Content Authoring Validation: Test and author complex AEM components (such as 50/50 layout components, Asset/CTA tabs, and background color toggles) across editor.html and wcmmode=disabled authoring environments.",
+                    "Validate Brightcove video integrations (inline players and modal overlay behaviors) across responsive layouts.",
+                    "CDN, Edge Routing & SEO Testing: Validate CDN (Fastly/Adobe Cloud) and Dispatcher rewrite rules, verifying trailing slash standardization, canonical tags, and hreflang.",
+                    "Ensure edge delivery compliance by preventing unwanted external domain redirects (such as pagescdn.com host routing).",
+                    "Perform technical SEO verifications, ensuring meta tags, indexation rules, and structured data match release specifications.",
+                    "Search & Solr Engine QA: Design QA strategies for Solr search logic, including indexing validation, timestamp mapping, and multilingual search edge cases.",
+                    "Deliver live technical demos to non-technical stakeholders showcasing validation results and technical risks.",
+                    "Performance, Automation & Cross-Browser Testing: Automate Lighthouse CLI performance checks (measuring Core Web Vitals like FCP, LCP, and CLS) using custom Bash scripts.",
+                    "Perform API load and stress testing using Apache JMeter to validate backend stability.",
+                    "Execute cross-browser and cross-device testing across Chrome, Firefox, Safari, and Edge on desktop, tablet, and mobile via BrowserStack Live and BrowserStack Local tunnels."
                 ]
             },
             {
