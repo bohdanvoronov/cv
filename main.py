@@ -4,6 +4,7 @@ from pydantic import BaseModel
 import sqlite3
 from fastapi.middleware.cors import CORSMiddleware
 import smtplib
+import os  # <--- MAKE SURE THIS LINE IS HERE!
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
@@ -40,9 +41,9 @@ def send_email_notification(name, sender_email_user, user_message):
     smtp_server = "smtp.gmail.com"
     smtp_port = 587
     
-    # PUT YOUR GMAIL AND 16-CHAR APP PASSWORD HERE:
-    my_gmail = "YOUR_EMAIL@gmail.com"
-    my_app_password = "YOUR_16_CHAR_APP_PASSWORD"
+    # Pull credentials securely from your .env file
+    my_gmail = os.getenv("GMAIL_USER")
+    my_app_password = os.getenv("GMAIL_APP_PASSWORD")
 
     msg = MIMEMultipart()
     msg['From'] = my_gmail
@@ -66,6 +67,7 @@ def send_email_notification(name, sender_email_user, user_message):
         server.login(my_gmail, my_app_password)
         server.sendmail(my_gmail, my_gmail, msg.as_string())
         server.quit()
+        print("Email notification sent successfully!")
     except Exception as e:
         print(f"Error sending email: {e}")
 
@@ -198,4 +200,4 @@ def send_message(msg: ContactMessage):
     # 2. Send email notification to your Gmail
     send_email_notification(msg.name, msg.email, msg.message)
 
-    return {"status": "success", "reply": f"Thanks {msg.name}, your message was saved to the database and emailed!"}
+    return {"status": "success", "reply": f"Thanks {msg.name}, your message was sent!"}
