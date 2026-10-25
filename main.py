@@ -4,9 +4,12 @@ from pydantic import BaseModel
 import sqlite3
 from fastapi.middleware.cors import CORSMiddleware
 import smtplib
-import os  # <--- MAKE SURE THIS LINE IS HERE!
+import os
+from dotenv import load_dotenv
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+
+load_dotenv()
 
 app = FastAPI()
 
