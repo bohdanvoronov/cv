@@ -357,6 +357,7 @@
 
                 const result = await response.json();
                 document.getElementById('status-msg').innerText = result.reply;
+                document.getElementById('status-msg').style.color = "#28a745"; // Success green!
                 document.getElementById('contactForm').reset();
             } catch (error) {
                 document.getElementById('status-msg').innerText = "Error saving message to database.";

@@ -44,7 +44,6 @@ def send_email_notification(name, sender_email_user, user_message):
     smtp_server = "smtp.gmail.com"
     smtp_port = 587
     
-    # Pull credentials securely from your .env file
     my_gmail = os.getenv("GMAIL_USER")
     my_app_password = os.getenv("GMAIL_APP_PASSWORD")
 
@@ -53,16 +52,22 @@ def send_email_notification(name, sender_email_user, user_message):
     msg['To'] = my_gmail
     msg['Subject'] = f"🚀 New Portfolio Message from {name}"
 
-    body = f"""
-    You have received a new message from your portfolio contact form!
-
-    Name: {name}
-    Email: {sender_email_user}
-    
-    Message:
-    {user_message}
+    # HTML body with bold fields and nice styling
+    html_body = f"""
+    <div style="font-family: Arial, sans-serif; padding: 20px; color: #333; line-height: 1.6;">
+        <h2 style="color: #2c3e50; border-bottom: 2px solid #eaeaea; padding-bottom: 10px;">🚀 New Portfolio Message</h2>
+        <p>You have received a new message from your portfolio contact form:</p>
+        <p><b>Name:</b> {name}</p>
+        <p><b>Email:</b> <a href="mailto:{sender_email_user}" style="color: #3498db; text-decoration: none;">{sender_email_user}</a></p>
+        <p><b>Message:</b></p>
+        <div style="background: #f8f9fa; padding: 15px; border-left: 4px solid #3498db; border-radius: 4px; margin-top: 5px;">
+            {user_message}
+        </div>
+    </div>
     """
-    msg.attach(MIMEText(body, 'plain'))
+    
+    # Attach as HTML instead of plain text
+    msg.attach(MIMEText(html_body, 'html'))
 
     try:
         server = smtplib.SMTP(smtp_server, smtp_port)
